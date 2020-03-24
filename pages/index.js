@@ -3,20 +3,24 @@ import { parseCookies } from "nookies";
 
 import apiUrl from "../utils/api-url";
 import StatusPanel from "../components/StatusPanel";
+import LoginPanel from "../components/LoginPanel";
 
 const startAction = async () => await fetch(apiUrl("/api/start"));
 const stopAction = async () => await fetch(apiUrl("/api/stop"));
+const loginAction = async ({ password }) => console.log(password);
 
 const Index = ({ code, name, auth }) => (
   <div>
     <h1>Poke It With A Stick</h1>
-    {auth && (
+    {auth ? (
       <StatusPanel
         code={code}
         name={name}
         startAction={startAction}
         stopAction={stopAction}
       />
+    ) : (
+      <LoginPanel loginAction={loginAction} />
     )}
   </div>
 );
