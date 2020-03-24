@@ -12,17 +12,16 @@ const params = {
   InstanceIds: [process.env.EC2_INSTANCE_ID],
 };
 
-export default (_, res) => {
-  ec2.describeInstanceStatus(params, function(err, data) {
-    if (err) {
-      res.status(500).json({ message: "❌" });
-      console.log("Error", err.stack);
-    } else {
-      res.status(200).json({
-        status: data.InstanceStatuses[0].InstanceState.Name,
-        message: "✅",
-      });
-      console.log("Success", JSON.stringify(data, null, 2));
-    }
-  });
+export default async (_, res) => {
+  try {
+    const data = await ec2.describeInstanceStatus(params).promise();
+    res.status(200).json({
+      status: data.InstanceStatuses[0].InstanceState.Name,
+      message: "✅",
+    });
+    console.log("Success", JSON.stringify(data, null, 2));
+  } catch (err) {
+    res.status(500).json({ message: "❌" });
+    console.log("Error", err.stack);
+  }
 };
