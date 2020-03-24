@@ -26,5 +26,6 @@
   },
   "devDependencies": {
     "prettier": "^2.0.2"
-  }
+  },
+  "repository": "git@github.com:noxan/poke-it-with-a-stick.git"
 }
