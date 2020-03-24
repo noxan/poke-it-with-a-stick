@@ -6,4 +6,6 @@ aws.config.update({
   region: process.env.EC2_REGION,
 });
 
+console.log(process.env.EC2_INSTANCE_ID);
+
 export default (_, res) => res.status(200).json({ message: "👋" });
