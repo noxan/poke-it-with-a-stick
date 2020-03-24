@@ -9,9 +9,10 @@ export default async (_, res) => {
         InstanceIds: [process.env.EC2_INSTANCE_ID],
       })
       .promise();
-    // console.log(JSON.stringify(data, null, 2));
-    const { State } = data.Reservations[0].Instances[0];
-    res.status(200).json(camelcaseKeys(State));
+    const { State, PublicIpAddress } = data.Reservations[0].Instances[0];
+    res
+      .status(200)
+      .json(camelcaseKeys({ State, PublicIpAddress }, { deep: true }));
   } catch (err) {
     res.status(500).json({ message: "❌" });
     console.log("Error", err.stack);
