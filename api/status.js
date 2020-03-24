@@ -19,7 +19,6 @@ export default async (_, res) => {
       status: data.InstanceStatuses[0].InstanceState.Name,
       message: "✅",
     });
-    console.log("Success", JSON.stringify(data, null, 2));
   } catch (err) {
     res.status(500).json({ message: "❌" });
     console.log("Error", err.stack);
