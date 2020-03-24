@@ -6,21 +6,22 @@ aws.config.update({
   region: process.env.EC2_REGION,
 });
 
-console.log(process.env.EC2_INSTANCE_ID);
-
 const ec2 = new aws.EC2({ apiVersion: "2016-11-15" });
 
 const params = {
-  DryRun: false,
+  InstanceIds: [process.env.EC2_INSTANCE_ID],
 };
 
 export default (_, res) => {
-  ec2.describeInstances(params, function(err, data) {
+  ec2.describeInstanceStatus(params, function(err, data) {
     if (err) {
       res.status(500).json({ message: "❌" });
       console.log("Error", err.stack);
     } else {
-      res.status(200).json({ message: "✅" });
+      res.status(200).json({
+        status: data.InstanceStatuses[0].InstanceState.Name,
+        message: "✅",
+      });
       console.log("Success", JSON.stringify(data, null, 2));
     }
   });
