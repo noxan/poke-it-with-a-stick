@@ -1,4 +1,4 @@
-# poke-it-with-a-stick
+# Poke it with a stick
 
 Shared remote control EC2 instance, or how to run your on-demand game server with friends.
 
