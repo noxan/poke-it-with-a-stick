@@ -4,8 +4,10 @@ import apiUrl from "../utils/api-url";
 
 const Index = ({ Code, Name }) => (
   <div>
-    <p>Poke It With A Stick</p>
-    {Name} (code {Code})
+    <h1>Poke It With A Stick</h1>
+    <p>
+      {Name} (code {Code})
+    </p>
   </div>
 );
 
