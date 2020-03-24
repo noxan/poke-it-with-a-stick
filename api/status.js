@@ -8,13 +8,13 @@ aws.config.update({
 
 const ec2 = new aws.EC2({ apiVersion: "2016-11-15" });
 
-const params = {
-  InstanceIds: [process.env.EC2_INSTANCE_ID],
-};
-
 export default async (_, res) => {
   try {
-    const data = await ec2.describeInstanceStatus(params).promise();
+    const data = await ec2
+      .describeInstanceStatus({
+        InstanceIds: [process.env.EC2_INSTANCE_ID],
+      })
+      .promise();
     res.status(200).json({
       status: data.InstanceStatuses[0].InstanceState.Name,
       message: "✅",
