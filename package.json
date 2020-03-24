@@ -4,5 +4,10 @@
   "description": "Shared remote control EC2 instance, or how to run your on-demand game server with friends.",
   "main": "index.js",
   "author": "Richard <richard@stromer.org>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  }
 }
