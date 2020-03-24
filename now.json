@@ -1,0 +1,8 @@
+{
+  "env": {
+    "AWS_ACCESS_KEY_ID": "@ec2-access-key-id",
+    "AWS_SECRET_ACCESS_KEY": "@ec2-secret-access-key",
+    "AWS_REGION": "@ec2-region",
+    "EC2_INSTANCE_ID": "@ec2-instance-id"
+  }
+}
