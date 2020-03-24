@@ -8,4 +8,20 @@ aws.config.update({
 
 console.log(process.env.EC2_INSTANCE_ID);
 
-export default (_, res) => res.status(200).json({ message: "👋" });
+const ec2 = new aws.EC2({ apiVersion: "2016-11-15" });
+
+const params = {
+  DryRun: false,
+};
+
+export default (_, res) => {
+  ec2.describeInstances(params, function(err, data) {
+    if (err) {
+      res.status(500).json({ message: "❌" });
+      console.log("Error", err.stack);
+    } else {
+      res.status(200).json({ message: "✅" });
+      console.log("Success", JSON.stringify(data, null, 2));
+    }
+  });
+};
