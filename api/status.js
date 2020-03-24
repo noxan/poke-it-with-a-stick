@@ -1,4 +1,5 @@
 import camelcaseKeys from "camelcase-keys";
+import pick from "lodash.pick";
 
 import ec2 from "../utils/api-ec2";
 
@@ -9,9 +10,8 @@ export default async (_, res) => {
         InstanceIds: [process.env.EC2_INSTANCE_ID],
       })
       .promise();
-    // console.log(JSON.stringify(data, null, 2));
-    const { State } = data.Reservations[0].Instances[0];
-    res.status(200).json(camelcaseKeys(State));
+    const responseData = pick(data.Reservations[0].Instances[0], ["State"]);
+    res.status(200).json(camelcaseKeys(responseData, { deep: true }));
   } catch (err) {
     res.status(500).json({ message: "❌" });
     console.log("Error", err.stack);
