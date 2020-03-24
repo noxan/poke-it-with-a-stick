@@ -7,8 +7,11 @@ import LoginPanel from "../components/LoginPanel";
 
 const startAction = async () => await fetch(apiUrl("/api/start"));
 const stopAction = async () => await fetch(apiUrl("/api/stop"));
-const loginAction = async ({ password }) => {
-  const res = await fetch(apiUrl("/api/status"));
+const loginAction = async (data) => {
+  const res = await fetch(apiUrl("/api/login"), {
+    method: "POST",
+    body: JSON.stringify(data),
+  });
   if (res.ok) {
     console.log("auth ok");
   } else {
