@@ -1,7 +1,7 @@
-const StatusPanel = ({ status, publicIpAddress, startAction, stopAction }) => (
+const StatusPanel = ({ state, publicIpAddress, startAction, stopAction }) => (
   <>
     <p>
-      {status.name} (code {status.code})
+      {state.name} (code {state.code})
     </p>
     <p>{publicIpAddress}</p>
     <p>

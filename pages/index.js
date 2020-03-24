@@ -19,15 +19,14 @@ const loginAction = async (data) => {
   }
 };
 
-const Index = ({ code, name, auth }) => (
+const Index = ({ auth, ...props }) => (
   <div>
     <h1>Poke It With A Stick</h1>
     {auth ? (
       <StatusPanel
-        code={code}
-        name={name}
         startAction={startAction}
         stopAction={stopAction}
+        {...props}
       />
     ) : (
       <LoginPanel loginAction={loginAction} />
