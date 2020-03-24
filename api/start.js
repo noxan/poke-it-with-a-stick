@@ -1,4 +1,4 @@
-import ec2 from "./utils/ec2";
+import ec2 from "../utils/api-ec2";
 
 export default async (_, res) => {
   try {
