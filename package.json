@@ -1,0 +1,8 @@
+{
+  "name": "poke-it-with-a-stick",
+  "version": "0.0.0",
+  "description": "Shared remote control EC2 instance, or how to run your on-demand game server with friends.",
+  "main": "index.js",
+  "author": "Richard <richard@stromer.org>",
+  "license": "MIT"
+}
