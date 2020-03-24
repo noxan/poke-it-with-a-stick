@@ -10,7 +10,10 @@ export default async (_, res) => {
         InstanceIds: [process.env.EC2_INSTANCE_ID],
       })
       .promise();
-    const responseData = pick(data.Reservations[0].Instances[0], ["State"]);
+    const responseData = pick(data.Reservations[0].Instances[0], [
+      "State",
+      "PublicIpAddress",
+    ]);
     res.status(200).json(camelcaseKeys(responseData, { deep: true }));
   } catch (err) {
     res.status(500).json({ message: "❌" });
