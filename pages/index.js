@@ -1,6 +1,7 @@
 import fetch from "isomorphic-unfetch";
 
 import apiUrl from "../utils/api-url";
+import StatusPanel from "../components/StatusPanel";
 
 const startAction = async () => await fetch(apiUrl("/api/start"));
 const stopAction = async () => await fetch(apiUrl("/api/stop"));
@@ -8,13 +9,12 @@ const stopAction = async () => await fetch(apiUrl("/api/stop"));
 const Index = ({ code, name }) => (
   <div>
     <h1>Poke It With A Stick</h1>
-    <p>
-      {name} (code {code})
-    </p>
-    <p>
-      <button onClick={startAction}>Start</button>
-      <button onClick={stopAction}>Stop</button>
-    </p>
+    <StatusPanel
+      code={code}
+      name={name}
+      startAction={startAction}
+      stopAction={stopAction}
+    />
   </div>
 );
 
