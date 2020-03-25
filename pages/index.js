@@ -1,5 +1,5 @@
 import fetch from "isomorphic-unfetch";
-import { parseCookies } from "nookies";
+import { parseCookies, setCookie } from "nookies";
 
 import apiUrl from "../utils/api-url";
 import StatusPanel from "../components/StatusPanel";
@@ -17,6 +17,7 @@ const loginAction = async (data) => {
   });
 
   if (res.ok) {
+    setCookie(null, "auth", data.password);
     console.log("auth ok");
   } else {
     // TODO: error handling
