@@ -1,9 +1,11 @@
 import cookie from "cookie";
 
+import { checkAuth } from "../utils/api-auth";
+
 export default async (req, res) => {
   const { password } = JSON.parse(req.body);
 
-  if (password === process.env.APP_PASSWORD) {
+  if (checkAuth(password)) {
     res.setHeader(
       "Set-Cookie",
       cookie.serialize("auth", password, { path: "/" }),
