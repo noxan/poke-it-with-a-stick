@@ -1,6 +1,11 @@
 import ec2 from "../utils/api-ec2";
+import { checkAuthCookie } from "../utils/api-auth";
 
-export default async (_, res) => {
+export default async (req, res) => {
+  if (!checkAuthCookie(req)) {
+    return res.status(401).json({ message: "🔒" });
+  }
+
   try {
     await ec2
       .startInstances({
