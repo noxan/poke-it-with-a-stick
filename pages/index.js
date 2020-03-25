@@ -39,7 +39,11 @@ Index.getInitialProps = async (ctx) => {
   const { auth } = parseCookies(ctx);
 
   if (auth) {
-    const res = await fetch(apiUrl("/api/status", req));
+    const res = await fetch(apiUrl("/api/status", req), {
+      headers: {
+        cookie: `auth=${auth}`,
+      },
+    });
     return { ...(await res.json()), auth };
   }
 
