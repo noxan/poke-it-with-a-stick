@@ -5,13 +5,17 @@ import apiUrl from "../utils/api-url";
 import StatusPanel from "../components/StatusPanel";
 import LoginPanel from "../components/LoginPanel";
 
-const startAction = async () => await fetch(apiUrl("/api/start"));
-const stopAction = async () => await fetch(apiUrl("/api/stop"));
+const startAction = async () =>
+  await fetch(apiUrl("/api/start"), { credentials: "include" });
+const stopAction = async () =>
+  await fetch(apiUrl("/api/stop"), { credentials: "include" });
 const loginAction = async (data) => {
   const res = await fetch(apiUrl("/api/login"), {
+    credentials: "include",
     method: "POST",
     body: JSON.stringify(data),
   });
+
   if (res.ok) {
     console.log("auth ok");
   } else {
