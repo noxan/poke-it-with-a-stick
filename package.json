@@ -14,7 +14,7 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "aws-sdk": "^2.644.0",
+    "aws-sdk": "^2.814.0",
     "camelcase-keys": "^6.2.1",
     "cookie": "^0.4.0",
     "formik": "^2.1.4",
